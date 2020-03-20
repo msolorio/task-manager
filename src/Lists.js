@@ -11,7 +11,20 @@ class Lists extends React.Component {
     this.props.addCard(index);
   }
 
-  getLists(boardData) {
+  renderCards(listItem) {
+    return listItem.cards.map((cardData, index) => {
+      return (
+        <div
+          className="card"
+          key={index}
+        >
+          {cardData}
+        </div>
+      );
+    });
+  }
+
+  renderLists(boardData) {
     return boardData.map((listItem, index) => {  
       
       return (
@@ -20,7 +33,7 @@ class Lists extends React.Component {
           key={index}
         >
           <div className="list">
-  
+            {this.renderCards(listItem)}
           </div>
           <div
             className="addCardButton"
@@ -37,7 +50,7 @@ class Lists extends React.Component {
     return (
       <div className="listsContainer">
         <div className="lists">
-          {this.getLists(this.props.boardData)}
+          {this.renderLists(this.props.boardData)}
         </div>
         <div
           className="addListButton"
