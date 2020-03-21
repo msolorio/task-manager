@@ -15,7 +15,6 @@ class Title extends React.Component {
   }
 
   handleInputChange(e) {
-    // this.setState({inputVal: e.target.value});
     this.props.updateTitle(e.target.value);
   }
 
@@ -51,7 +50,7 @@ class Title extends React.Component {
     
     return (
       <div
-        class="title"
+        className="title"
       >
         {this.state.showInput ? TitleInput : SetTitle}
       </div>

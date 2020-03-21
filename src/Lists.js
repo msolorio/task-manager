@@ -34,7 +34,6 @@ class Lists extends React.Component {
           key={index}
         >
           <Title
-          // TODO:
             updateTitle={(value) => this.props.updateListTitle(value, index)}
             titleText={listItem.listTitle}
           />

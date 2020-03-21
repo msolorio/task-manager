@@ -49,7 +49,6 @@ class App extends React.Component {
   }
 
   updateListTitle(inputVal, listIndex) {
-    console.log("in update list title:", inputVal, listIndex);
     this.setState((prevState) => {
       prevState.boardData[listIndex].listTitle = inputVal;
       return {boardData: prevState.boardData};
