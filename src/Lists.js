@@ -1,4 +1,5 @@
 import React from 'react';
+import Title from './Title';
 
 class Lists extends React.Component {
   constructor(props) {
@@ -26,12 +27,17 @@ class Lists extends React.Component {
 
   renderLists(boardData) {
     return boardData.map((listItem, index) => {  
-      
+
       return (
         <div
           className="listContainer"
           key={index}
         >
+          <Title
+          // TODO:
+            updateTitle={(value) => this.props.updateListTitle(value, index)}
+            titleText={listItem.listTitle}
+          />
           <div className="list">
             {this.renderCards(listItem)}
           </div>

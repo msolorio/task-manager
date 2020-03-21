@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import BoardTitle from './BoardTitle';
+import Title from './Title';
 import Lists from './Lists';
 
 class App extends React.Component {
@@ -25,6 +25,8 @@ class App extends React.Component {
 
     this.addList = this.addList.bind(this);
     this.addCard = this.addCard.bind(this);
+    this.updateListTitle = this.updateListTitle.bind(this);
+    this.updateBoardTitle = this.updateBoardTitle.bind(this);
   }
 
   addList() {
@@ -37,8 +39,6 @@ class App extends React.Component {
   }
 
   addCard(listIndex) {
-    console.log("in addCard, list index:", listIndex);
-
     this.setState((prevState) => {
       const prevCards = prevState.boardData[listIndex].cards.slice(0);
       const newCards = prevCards.concat(["new card"]);
@@ -48,18 +48,30 @@ class App extends React.Component {
     })
   }
 
-  render() {
-    console.log('/////////////////////////////////////');
-    console.log('this.state:', this.state);
-    console.log('/////////////////////////////////////');
+  updateListTitle(inputVal, listIndex) {
+    console.log("in update list title:", inputVal, listIndex);
+    this.setState((prevState) => {
+      prevState.boardData[listIndex].listTitle = inputVal;
+      return {boardData: prevState.boardData};
+    });
+  }
 
+  updateBoardTitle(boardTitle) {
+    this.setState({boardTitle});
+  }
+
+  render() {
     return (
       <div className="App">
-        <BoardTitle />
+        <Title
+          updateTitle={this.updateBoardTitle}
+          titleText={this.state.boardTitle}  
+        />
         <Lists
           boardData={this.state.boardData}
           addList={this.addList}
           addCard={this.addCard}
+          updateListTitle={this.updateListTitle}
         />
       </div>
     );
