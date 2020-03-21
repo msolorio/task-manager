@@ -27,6 +27,7 @@ class App extends React.Component {
     this.addCard = this.addCard.bind(this);
     this.updateListTitle = this.updateListTitle.bind(this);
     this.updateBoardTitle = this.updateBoardTitle.bind(this);
+    this.updateCardTitle = this.updateCardTitle.bind(this);
   }
 
   addList() {
@@ -55,6 +56,14 @@ class App extends React.Component {
     });
   }
 
+  updateCardTitle(inputVal, listIndex, cardIndex) {
+    this.setState((prevState) => {
+      prevState.boardData[listIndex].cards[cardIndex] = inputVal;
+
+      return {boardData: prevState.boardData};
+    });
+  }
+
   updateBoardTitle(boardTitle) {
     this.setState({boardTitle});
   }
@@ -71,6 +80,7 @@ class App extends React.Component {
           addList={this.addList}
           addCard={this.addCard}
           updateListTitle={this.updateListTitle}
+          updateCardTitle={this.updateCardTitle}
         />
       </div>
     );

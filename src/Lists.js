@@ -12,14 +12,17 @@ class Lists extends React.Component {
     this.props.addCard(index);
   }
 
-  renderCards(listItem) {
-    return listItem.cards.map((cardData, index) => {
+  renderCards(listItem, listIndex) {
+    return listItem.cards.map((cardData, cardIndex) => {
       return (
         <div
           className="card"
-          key={index}
+          key={cardIndex}
         >
-          {cardData}
+          <Title
+            updateTitle={(value) => this.props.updateCardTitle(value, listIndex, cardIndex)}
+            titleText={cardData}
+          />
         </div>
       );
     });
@@ -38,7 +41,7 @@ class Lists extends React.Component {
             titleText={listItem.listTitle}
           />
           <div className="list">
-            {this.renderCards(listItem)}
+            {this.renderCards(listItem, index)}
           </div>
           <div
             className="addCardButton"
