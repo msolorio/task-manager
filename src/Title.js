@@ -1,14 +1,9 @@
 import React from 'react';
 
-function TitleInput() {
-  return <input/>;
-}
-
-class BoardTitle extends React.Component {
+class Title extends React.Component {
   constructor(props) {
     super(props);
 
-    this.handleTitleClick = this.handleTitleClick.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleSetTitleClick = this.handleSetTitleClick.bind(this);
@@ -19,14 +14,8 @@ class BoardTitle extends React.Component {
     }
   }
 
-  handleTitleClick() {
-    console.log('title was clicked');
-  }
-
   handleInputChange(e) {
-    this.setState({inputVal: e.target.value});
-
-    console.log(this.state.inputVal);
+    this.props.updateTitle(e.target.value);
   }
 
   handleKeyPress(e) {
@@ -48,7 +37,7 @@ class BoardTitle extends React.Component {
           type="text"
           onChange={this.handleInputChange}
           onKeyPress={this.handleKeyPress}
-          value={this.state.inputVal}
+          value={this.props.titleText}
         />
       </span>
     );
@@ -56,12 +45,17 @@ class BoardTitle extends React.Component {
     const SetTitle = (
       <header
         onClick={this.handleSetTitleClick}
-      >{this.state.inputVal}</header>
+      >{this.props.titleText}</header>
     );
-
-    if (this.state.showInput) return TitleInput;
-    return SetTitle;
+    
+    return (
+      <div
+        class="title"
+      >
+        {this.state.showInput ? TitleInput : SetTitle}
+      </div>
+    );
   }
 }
 
-export default BoardTitle;
+export default Title;
