@@ -1,2 +1,2 @@
 ## Task Manager App
-UI Portion of Task Manager App with React
+UI for Task Manager App with React
