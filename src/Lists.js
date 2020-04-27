@@ -1,5 +1,6 @@
 import React from 'react';
 import Title from './Title';
+import CardTags from './CardTags';
 
 class Lists extends React.Component {
   constructor(props) {
@@ -21,8 +22,9 @@ class Lists extends React.Component {
         >
           <Title
             updateTitle={(value) => this.props.updateCardData(value, listIndex, cardIndex)}
-            titleText={cardData}
+            titleText={cardData.cardContent}
           />
+          <CardTags tags={cardData.tags} />
         </div>
       );
     });

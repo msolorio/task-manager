@@ -30,7 +30,10 @@ db.taskboard.insertMany([
       {
         listTitle: "list title",
         cards: [
-          "some card text"
+          {
+            cardContent: "",
+            tags: [""]
+          }
         ]
       }
     ]
@@ -58,7 +61,9 @@ db.taskboard.insertMany([
   addCard(listIndex) {
     this.setState((prevState) => {
       const prevCards = prevState.boardData[listIndex].cards.slice(0);
-      const newCards = prevCards.concat(["new card"]);
+      const newCards = prevCards.concat([{
+        cardContent: "new card", tags: []
+      }]);
       prevState.boardData[listIndex].cards = newCards;
 
       return {boardData: prevState.boardData};
@@ -74,7 +79,7 @@ db.taskboard.insertMany([
 
   updateCardData(inputVal, listIndex, cardIndex) {
     this.setState((prevState) => {
-      prevState.boardData[listIndex].cards[cardIndex] = inputVal;
+      prevState.boardData[listIndex].cards[cardIndex].cardContent = inputVal;
       return {boardData: prevState.boardData};
     });
   }
