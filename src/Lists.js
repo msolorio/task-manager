@@ -12,37 +12,40 @@ class Lists extends React.Component {
     this.props.addCard(index);
   }
 
-  renderCards(listItem) {
-    return listItem.cards.map((cardData, index) => {
+  renderCards(cards, listIndex) {
+    return cards.map((cardData, cardIndex) => {
       return (
         <div
           className="card"
-          key={index}
+          key={cardIndex}
         >
-          {cardData}
+          <Title
+            updateTitle={(value) => this.props.updateCardData(value, listIndex, cardIndex)}
+            titleText={cardData}
+          />
         </div>
       );
     });
   }
 
   renderLists(boardData) {
-    return boardData.map((listItem, index) => {  
+    return boardData.map((listItem, listIndex) => {  
 
       return (
         <div
           className="listContainer"
-          key={index}
+          key={listIndex}
         >
           <Title
-            updateTitle={(value) => this.props.updateListTitle(value, index)}
+            updateTitle={(value) => this.props.updateListTitle(value, listIndex)}
             titleText={listItem.listTitle}
           />
           <div className="list">
-            {this.renderCards(listItem)}
+            {this.renderCards(listItem.cards, listIndex)}
           </div>
           <div
             className="addCardButton"
-            onClick={() => this.handleAddCardClick(index)}>
+            onClick={() => this.handleAddCardClick(listIndex)}>
             add card
           </div>
         </div>
